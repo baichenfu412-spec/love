@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>带文字的跳动爱心</title>
+<style>
+  /* 设置页面背景和居中对齐 */
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #ffe6e6; /* 浅粉色背景 */
+    margin: 0;
+    font-family: '微软雅黑', sans-serif;
+  }
+
+  /* 爱心和文字的外部容器，动画加在这里 */
+  .heart-container {
+    position: relative;
+    width: 100px;
+    height: 90px;
+    animation: heartbeat 1s infinite alternate; /* 跳动动画 */
+  }
+
+  /* 利用 CSS 伪元素画出爱心的左右两半圆弧 */
+  .heart-container::before,
+  .heart-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 50px;
+    height: 80px;
+    background-color: #ff3366; /* 爱心颜色 */
+    border-radius: 50px 50px 0 0;
+  }
+
+  /* 右半边 */
+  .heart-container::before {
+    left: 50px;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+  }
+
+  /* 左半边 */
+  .heart-container::after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+  }
+
+  /* 设置文字样式和位置 */
+  .heart-text {
+    position: absolute;
+    top: 45%; /* 控制文字上下的位置 */
+    left: 50%; /* 控制文字左右的位置 */
+    transform: translate(-50%, -50%); /* 确保真正的居中 */
+    color: white; /* 文字颜色，推荐白色或浅色 */
+    font-size: 18px; /* 字号大小 */
+    font-weight: bold;
+    z-index: 10; /* 确保文字浮在爱心上面，不被盖住 */
+    white-space: nowrap; /* 强制文字不换行 */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2); /* 给文字加点阴影更好看 */
+  }
+
+  /* 定义跳动动画的关键帧 */
+  @keyframes heartbeat {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.15); }
+  }
+</style>
+</head>
+<body>
+
+  <div class="heart-container">
+    <div class="heart-text">小赵老师 天天开心噢！</div>
+  </div>
+
+</body>
+</html>
